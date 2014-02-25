@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Marvelous::VERSION
   spec.authors       = ["Kevin Hsieh"]
   spec.email         = ["kevinshsieh@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = "Ruby wrapper for Marvel Comic's Developer API"
+  spec.summary       = "simple and elegant ruby interface for Marvel Comic's Developer API"
+  spec.homepage      = "https://www.github.com/kshsieh/marvelous"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
