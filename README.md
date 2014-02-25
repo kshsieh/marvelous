@@ -1,6 +1,6 @@
 # Marvelous
 
-TODO: Write a gem description
+simple and elegant ruby wrapper for Marvel Comic's Developer API
 
 ## Installation
 
