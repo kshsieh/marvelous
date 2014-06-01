@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'rake'
+gem 'httparty'
 
 group :development, :test do
   gem 'byebug'
@@ -13,4 +14,5 @@ group :test do
   gem 'simplecov'
   gem 'webmock'
   gem 'rspec'
+  gem 'vcr'
 end
