@@ -16,15 +16,15 @@ module Marvelous
     end
 
     def get endpoint
-      endpoint + Time.now.to_i
+      connection.get("#{endpoint}#{auth_params}")
     end
 
     def auth_params
-      "?ts=#{Time.now.to_i}&api_key=#{ENV['MARVEL_PUBLIC']}&hash=#{auth_hash}"    
+      "?ts=#{Time.now.to_i}&apikey=#{ENV['MARVEL_PUBLIC']}&hash=#{auth_hash}"    
     end
 
     def auth_hash 
-      Digest::MD5.hexdigest "#{Time.now.to_i}#{ENV['MARVEL_PUBLIC']}#{ENV['MARVEL_PRIVATE']}"
+      Digest::MD5.hexdigest "#{Time.now.to_i}#{ENV['MARVEL_PRIVATE']}#{ENV['MARVEL_PUBLIC']}"
     end
   end
 end
