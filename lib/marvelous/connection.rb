@@ -15,8 +15,8 @@ module Marvelous
                     end
     end
 
-    def get endpoint
-      connection.get("#{endpoint}#{auth_params}")
+    def self.get endpoint
+      instance.connection.get("#{endpoint}#{instance.auth_params}")
     end
 
     def auth_params
