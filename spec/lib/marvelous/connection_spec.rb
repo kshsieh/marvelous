@@ -16,7 +16,7 @@ describe Marvelous::Connection do
     end
 
     it "should return the proper string" do
-      connection.auth_params.should eq "?ts=#{Time.now.to_i}&api_key=12345&hash=foobarbaz"
+      connection.auth_params.should eq "?ts=#{Time.now.to_i}&apikey=12345&hash=foobarbaz"
     end
   end
 
@@ -27,7 +27,7 @@ describe Marvelous::Connection do
     end
 
     it "should pass in proper string to create digest" do
-      Digest::MD5.should_receive(:hexdigest).with("#{Time.now.to_i}12345abcdef")
+      Digest::MD5.should_receive(:hexdigest).with("#{Time.now.to_i}abcdef12345")
       connection.auth_hash
     end
   end
