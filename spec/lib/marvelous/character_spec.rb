@@ -1,9 +1,46 @@
 require 'spec_helper'
 
 describe Marvelous::Character do
+  context ".all" do
+    it "should return an array of all characters" do
+      VCR.use_cassette 'query all characters' do
+        Marvelous::Character.all.should be_an_instance_of Array
+      end
+    end
+
+    it "should have array contents full of Marvelous::Characters" do
+      VCR.use_cassette 'query all characters' do
+        Marvelous::Character.all.all? { |c| c.class == Marvelous::Character }.should be_true
+      end
+    end
+  end
+
   context ".where" do
     it "should return an array of characters" do
-      Marvelous::Character.where(name: 'The Hulk').should be_an_instance_of Array
+      VCR.use_cassette 'query name' do
+        pending "haven't worked on where yet"
+        Marvelous::Character.where(name: 'The Hulk').should be_an_instance_of Array
+      end
+    end
+  end
+
+  context "initialize" do
+    let(:character){ Marvelous::Character.new(id: 1, name: 'FooBar', description: 'this is a description', modified: DateTime.now) }
+
+    it "should have id" do
+      character.id.should eq 1
+    end
+
+    it "should have name" do
+      character.name.should eq 'FooBar'
+    end
+
+    it "should have description" do
+      character.description.should eq 'this is a description'
+    end
+
+    it "should have a modified date" do
+      character.modified.should eq DateTime.now
     end
   end
 end

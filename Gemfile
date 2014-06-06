@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in marvelous.gemspec
 gemspec
 
 gem 'rake'
@@ -8,6 +7,8 @@ gem 'httparty'
 
 group :development, :test do
   gem 'byebug'
+  gem 'awesome_print'
+  gem 'dotenv'
 end
 
 group :test do
@@ -15,4 +16,5 @@ group :test do
   gem 'webmock'
   gem 'rspec'
   gem 'vcr'
+  gem 'timecop'
 end

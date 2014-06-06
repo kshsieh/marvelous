@@ -1,6 +1,7 @@
 require 'faraday'
 require 'singleton'
 require 'digest/md5'
+require 'json'
 
 module Marvelous
   class Connection
@@ -16,7 +17,7 @@ module Marvelous
     end
 
     def self.get endpoint
-      instance.connection.get("#{endpoint}#{instance.auth_params}")
+      connection.get("#{endpoint}#{instance.auth_params}")
     end
 
     def auth_params
@@ -25,6 +26,16 @@ module Marvelous
 
     def auth_hash 
       Digest::MD5.hexdigest "#{Time.now.to_i}#{ENV['MARVEL_PRIVATE']}#{ENV['MARVEL_PUBLIC']}"
+    end
+
+    # overrides class methods to allow calls to Singleton without calling instance
+    def self.respond_to? method, include_private=false
+      instance.respond_to?(method, include_private) || super
+    end
+
+    def self.method_missing method, *args, &block
+      return super unless respond_to? method
+      instance.send method, *args, &block
     end
   end
 end
