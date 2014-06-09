@@ -11,7 +11,6 @@ module Marvelous
     def initialize
       @connection = Faraday.new(url: 'http://gateway.marvel.com/') do |faraday|
                       faraday.request  :url_encoded
-                      faraday.response :logger
                       faraday.adapter  Faraday.default_adapter
                     end
     end
