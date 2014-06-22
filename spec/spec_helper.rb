@@ -7,7 +7,7 @@ require 'simplecov'
 require 'dotenv'
 require 'timecop'
 require 'byebug'
-Dotenv.load
+
 SimpleCov.start
 
 VCR.configure do |c|
@@ -20,5 +20,9 @@ RSpec.configure do |config|
   config.before(:all) do
     new_time = Time.local(2014, 5, 20, 12, 0, 0)
     Timecop.freeze(new_time)
+  end
+
+  config.before(:each) do
+    Dotenv.load
   end
 end

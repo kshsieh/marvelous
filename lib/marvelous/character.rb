@@ -32,7 +32,24 @@ module Marvelous
     end
 
     def self.where attrs
-      Marvelous::Connection.get uri
+      characters = []
+      params = "" 
+      attrs.keys.each { |k| params += "#{k.to_s}=#{attrs[k]}&" }
+
+      response = Marvelous::Connection.get uri, params
+
+      if response.success?
+        hash = JSON.parse(response.body).with_indifferent_access
+        results = hash[:data][:results]
+
+        results.each do |result|
+          characters << Marvelous::Character.new(result)
+        end
+
+        characters
+      else
+        raise StandardError
+      end
     end
   end
 end

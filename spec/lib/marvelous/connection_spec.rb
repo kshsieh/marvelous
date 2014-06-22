@@ -16,7 +16,7 @@ describe Marvelous::Connection do
     end
 
     it "should return the proper string" do
-      connection.auth_params.should eq "?ts=#{Time.now.to_i}&apikey=12345&hash=foobarbaz"
+      connection.auth_params.should eq "ts=#{Time.now.to_i}&apikey=12345&hash=foobarbaz"
     end
   end
 

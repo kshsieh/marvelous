@@ -15,12 +15,12 @@ module Marvelous
                     end
     end
 
-    def self.get endpoint
-      connection.get("#{endpoint}#{instance.auth_params}")
+    def self.get endpoint, params=""
+      connection.get("#{endpoint}?#{params}&#{instance.auth_params}")
     end
 
     def auth_params
-      "?ts=#{Time.now.to_i}&apikey=#{ENV['MARVEL_PUBLIC']}&hash=#{auth_hash}"    
+      "ts=#{Time.now.to_i}&apikey=#{ENV['MARVEL_PUBLIC']}&hash=#{auth_hash}"    
     end
 
     def auth_hash 
