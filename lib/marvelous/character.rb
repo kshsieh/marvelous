@@ -14,30 +14,20 @@ module Marvelous
     end
 
     def self.all
-      characters = []
-      response = Marvelous::Connection.get uri
-
-      if response.success?
-        hash = JSON.parse(response.body).with_indifferent_access
-        results = hash[:data][:results]
-
-        results.each do |result|
-          characters << Marvelous::Character.new(result)
-        end
-
-        characters
-      else
-        raise StandardError
-      end
+      handle_response Marvelous::Connection.get uri
     end
 
     def self.where attrs
-      characters = []
       params = "" 
+
       attrs.keys.each { |k| params += "#{k.to_s}=#{attrs[k]}&" }
 
-      response = Marvelous::Connection.get uri, params
+      handle_response Marvelous::Connection.get uri, params
+    end
 
+    def self.handle_response response
+      characters = []
+      
       if response.success?
         hash = JSON.parse(response.body).with_indifferent_access
         results = hash[:data][:results]

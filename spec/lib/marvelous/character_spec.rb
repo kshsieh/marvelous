@@ -58,6 +58,8 @@ describe Marvelous::Character do
           end
         end
       end
+
+      context ""
     end
   end
 
